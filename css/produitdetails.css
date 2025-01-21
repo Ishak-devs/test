@@ -1,0 +1,132 @@
+/* Container principal */
+.parent-container {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;    /* Centre verticalement */
+    height: 100vh;         /* Hauteur de la fenêtre d'affichage */
+    margin: 0;             /* Annule toute marge par défaut */
+}
+
+/* Conteneur du produit */
+.container-produit {
+    max-width: 1200px;
+    margin: 90px auto; /* Centre le conteneur horizontalement */
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center;    /* Centre verticalement */
+}
+
+/* Titre */
+.container-produit h2 {
+    font-size: 24px; /* Taille du titre */
+    color: #212f3c; /* Couleur du titre */
+    margin-bottom: 10px; /* Espace en dessous du titre */
+}
+
+/* Description */
+.container-produit p {
+    font-size: 14px; /* Taille de la description */
+    color: #555; /* Couleur du texte */
+    line-height: 1.6; /* Espacement des lignes */
+    margin: 5px 0; /* Espace entre les paragraphes */
+}
+
+/* Prix */
+.prix {
+    font-size: 20px; /* Taille du prix */
+    font-weight: bold;
+}
+
+/* Stock et fabricant */
+.quantite-stock,
+.fabricant {
+    font-size: 12px; /* Taille pour stock et fabricant */
+    color: #777; /* Couleur secondaire */
+}
+
+/* Styles du slider */
+.slider-container {
+    position: relative; /* Positionnement des boutons du slider */
+    overflow: hidden; /* Cache le débordement */
+    margin: 20px 0; /* Espace autour du slider */
+    width: 100%; /* Largeur du slider */
+}
+
+/* Suivi des images */
+.image-track {
+    display: flex; /* Disposition horizontale */
+    transition: transform 0.5s ease; /* Transition douce */
+}
+
+/* Images des produits */
+.product-image {
+    min-width: 100%; /* Chaque image prend toute la largeur */
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur */
+}
+
+/* Images des produits */
+.product-image img {
+    width: auto; /* Ajustement automatique de la largeur */
+    max-width: 300px; /* Largeur maximale pour les images */
+    height: auto; /* Hauteur automatique pour garder les proportions */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+/* Boutons du slider */
+.slider-button {
+    position: absolute;
+    top: 50%; /* Centre verticalement */
+    transform: translateY(-50%); /* Déplacement pour le centrage */
+    background-color: rgba(255, 255, 255, 0.8); /* Blanc semi-transparent */
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre des boutons */
+    z-index: 10; /* Boutons au-dessus */
+}
+
+.prev-button {
+    left: 10px; /* À gauche */
+}
+
+.next-button {
+    right: 10px; /* À droite */
+}
+
+/* Styles du formulaire */
+form {
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    margin-top: 20px; /* Espace au-dessus du formulaire */
+}
+
+form input[type="number"] {
+    width: 60px; /* Largeur fixe pour la quantité */
+    padding: 5px; /* Padding à l'intérieur */
+    border: 1px solid #ccc; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */
+    margin-right: 10px; /* Espace entre l'input et le bouton */
+}
+
+form button {
+    background-color: #626588; /* Couleur du bouton */
+    color: white; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    padding: 10px 15px; /* Padding à l'intérieur */
+    border-radius: 4px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en main */
+    transition: background-color 0.3s; /* Transition pour le survol */
+}
+
+form button:hover {
+    background-color: #27243c; /* Couleur plus sombre au survol */
+}
+
+/* Erreurs */
+.error-message {
+    font-size: 12px; /* Taille des messages d'erreur */
+    margin: 10px 0; /* Espace autour */
+    color: red; /* Couleur rouge pour les erreurs */
+}

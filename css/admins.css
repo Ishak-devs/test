@@ -1,0 +1,110 @@
+/* Style général du corps */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Couleur de fond douce */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que le corps prend toute la hauteur de la fenêtre */
+}
+
+header {
+    background-color: #2c3e50; /* Couleur de fond du header */
+    color: white; /* Couleur du texte du header */
+    padding: 20px; /* Espacement intérieur */
+    text-align: center; /* Centrer le texte */
+}
+
+h1 {
+    margin: 0; /* Supprime la marge par défaut */
+    font-size: 1.8rem; /* Taille de police pour le titre */
+}
+
+nav ul {
+    list-style-type: none; /* Supprime les puces de la liste */
+    padding: 0; /* Supprime le rembourrage par défaut */
+}
+
+nav a {
+    color: white; /* Couleur du lien */
+    text-decoration: none; /* Supprime le soulignement */
+    padding: 10px; /* Espacement intérieur des liens */
+    transition: background-color 0.3s; /* Ajoute une transition pour un effet au survol */
+}
+
+nav a:hover {
+    background-color: #34495e; /* Change la couleur de fond au survol */
+}
+
+main {
+    flex: 1; /* Permet au main de prendre l'espace restant */
+    padding: 20px; /* Espacement intérieur */
+    max-width: 1200px; /* Limite la largeur maximale du contenu principal */
+    margin: auto; /* Centre le contenu */
+}
+
+h2 {
+    font-size: 1.5rem; /* Taille de police pour les sous-titres */
+    margin-bottom: 15px; /* Espacement en bas du sous-titre */
+}
+
+table {
+    width: 100%; /* Largeur de la table */
+    border-collapse: collapse; /* Supprime les espaces entre les cellules */
+    background-color: white; /* Fond blanc pour la table */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre pour donner de la profondeur */
+}
+
+th, td {
+    padding: 10px; /* Espacement intérieur des cellules */
+    text-align: left; /* Alignement du texte à gauche */
+    border: 1px solid #ddd; /* Bordure légère */
+}
+
+th {
+    background-color: #3498db; /* Couleur de fond des en-têtes */
+    color: white; /* Couleur du texte des en-têtes */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+}
+
+input[type="number"],
+select {
+    width: 100%; /* Largeur complète pour les champs */
+    padding: 8px; /* Espacement intérieur */
+    margin: 5px 0; /* Espacement vertical */
+    border: 1px solid #bdc3c7; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */
+    box-sizing: border-box; /* Inclut la bordure et le rembourrage dans la largeur totale */
+}
+
+input[type="number"]:focus,
+select:focus {
+    border-color: #3498db; /* Bordure bleue au focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+.btn {
+    background-color: #3498db; /* Couleur de fond des boutons */
+    color: white; /* Couleur du texte des boutons */
+    border: none; /* Supprime la bordure par défaut */
+    padding: 10px 15px; /* Espacement intérieur */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en main pour les boutons */
+    transition: background-color 0.3s; /* Transition pour l'effet de survol */
+}
+
+.btn:hover {
+    background-color: #2980b9; /* Couleur de fond au survol */
+}
+
+.btn-danger {
+    background-color: #e74c3c; /* Couleur de fond pour les boutons de danger */
+}
+
+.btn-danger:hover {
+    background-color: #c0392b; /* Couleur de fond au survol pour les boutons de danger */
+}

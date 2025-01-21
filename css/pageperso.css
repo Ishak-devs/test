@@ -1,0 +1,86 @@
+
+/* Main Container */
+.account-container {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Title */
+.account-title {
+    font-size: 2em;
+    color: #212f3c;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Account Section */
+.account-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.account-section p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Information Styling */
+.account-info-label {
+    font-weight: bold;
+    color: #212f3c;
+}
+
+.account-info-value {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Footer Styling */
+.footer-container {
+    background-color: #212f3c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 8px;
+}
+
+.footer-link {
+    color: #febd69;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .account-container {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .account-title {
+        font-size: 1.6em;
+    }
+
+    .account-section p {
+        font-size: 1em;
+    }
+
+    .footer-container {
+        padding: 15px;
+    }
+}

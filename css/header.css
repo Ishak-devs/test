@@ -1,0 +1,202 @@
+
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff; /* Fond blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.navbar .navbar-brand {
+    color: #212f3c; /* Couleur sombre pour les liens */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar .navbar-brand:hover {
+    color: #febd69; /* Couleur orange clair au survol */
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-toggler {
+    border-color: #febd69; /* Couleur de la bordure du bouton hamburger */
+}
+
+.navbar-toggler-icon {
+    background-color: #febd69; /* Couleur du hamburger */
+}
+
+/* Rechercher un produit */
+.form-inline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#product {
+    width: 350px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: border 0.3s ease;
+}
+
+#product:focus {
+    border-color: #febd69; /* Bordure jaune clair au focus */
+    outline: none;
+}
+
+/* Section droite du menu */
+.right-section {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.bienvenue-text {
+    font-size: 16px;
+    color: #212f3c;
+}
+
+.bienvenue-text a {
+    font-size: 14px;
+    color: #febd69;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bienvenue-text a:hover {
+    color: #212f3c;
+}
+
+/* Menu Burger pour les petits écrans */
+.burger-menu {
+    font-size: 30px;
+    color: #212f3c;
+    cursor: pointer;
+    display: none;
+}
+
+/* Menu responsive */
+.menu {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 200px;
+}
+
+.menu.active {
+    display: flex;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #212f3c;
+    padding: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        display: none; /* Cache les éléments de navigation en grand écran */
+    }
+
+    .burger-menu {
+        display: block; /* Affiche le menu burger en petits écrans */
+    }
+
+    .navbar-collapse {
+        display: block;
+    }
+
+    .navbar-toggler {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+/* Navbar pour les éléments affichés lorsque l'utilisateur est connecté */
+.navbar .navbar-nav .btnperso {
+    margin-left: 15px;
+    padding: 8px 15px;
+    background-color: #febd69;
+    border-radius: 4px;
+    color: #212f3c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .navbar-nav .btnperso:hover {
+    background-color: #f3a84a;
+}
+
+/* Style du panier */
+.navbar .navbar-brand img {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+/* Formulaire de déconnexion avec confirmation */
+a[href="deconnexion.php"] {
+    color: #e74c3c;
+}
+
+a[href="deconnexion.php"]:hover {
+    color: #c0392b;
+}
+
+/* Réglages des bordures et couleurs au focus */
+input:focus, select:focus, textarea:focus {
+    border-color: #febd69 !important; /* Bordure jaune clair au focus */
+    outline: none;
+}
+/* Menu responsive */
+.menu {
+    display: none;
+    flex-direction: column;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 200px;
+    transition: all 0.3s ease-in-out; /* Transition douce pour l'affichage */
+}
+
+.menu.active {
+    display: flex; /* Affiche le menu lorsque la classe "active" est ajoutée */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #212f3c;
+    padding: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #f2f2f2;
+}

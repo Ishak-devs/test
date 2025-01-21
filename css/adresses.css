@@ -1,0 +1,105 @@
+
+/* Titre principal */
+h2, h3 {
+    color: #212f3c; /* Couleur sombre pour les titres */
+    margin-bottom: 5px; /* Réduire l'espacement en bas */
+}
+
+/* Style du formulaire d'adresse */
+.formadresse {
+    background-color: #ffffff; /* Couleur de fond blanche */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 10px; /* Réduire l'espacement interne */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    max-width: 400px; /* Largeur maximale */
+    margin: 10px auto; /* Centrage horizontal */
+}
+
+/* Style des étiquettes de formulaire */
+label {
+    display: block; /* Affichage en bloc pour occuper toute la largeur */
+    margin-bottom: 3px; /* Réduire l'espacement en bas */
+    font-weight: bold; /* Texte en gras */
+    font-size: 0.85em; /* Taille de police plus petite pour les labels */
+}
+
+/* Style des champs de saisie */
+input[type="text"], input[type="submit"] {
+    width: 100%; /* Largeur pleine */
+    padding: 8px; /* Réduire l'espacement interne */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */
+    margin-bottom: 10px; /* Réduire l'espacement en bas */
+    font-size: 0.9em; /* Taille de police plus petite pour les champs */
+}
+
+/* Style pour le bouton de soumission */
+input[type="submit"] {
+    background-color: #febd69; /* Couleur du bouton */
+    color: #34495e; /* Couleur du texte du bouton */
+    border: none; /* Pas de bordure */
+    cursor: pointer; /* Curseur pointer pour indiquer un clic */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Style du bouton de soumission au survol */
+input[type="submit"]:hover {
+    background-color: #f3a847; /* Couleur légèrement plus foncée au survol */
+}
+
+/* Style des messages d'erreur */
+.error-message {
+    color: red; /* Couleur rouge pour les messages d'erreur */
+    font-size: 0.75em; /* Taille de police plus petite pour les messages d'erreur */
+    margin-top: -5px; /* Réduire l'espacement supérieur */
+    margin-bottom: 8px; /* Réduire l'espacement en bas */
+}
+
+/* Style pour la liste des adresses */
+.address-list {
+    list-style-type: none; /* Supprime les puces de la liste */
+    padding: 0; /* Pas d'espacement interne */
+}
+
+/* Style des éléments de la liste d'adresses */
+.address-item {
+    background-color: #ffffff; /* Couleur de fond blanche */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 10px; /* Réduire l'espacement interne */
+    margin-bottom: 10px; /* Réduire l'espacement en bas */
+    display: flex; /* Flexbox pour disposition */
+    justify-content: space-between; /* Espacement entre les éléments */
+    align-items: center; /* Aligner les éléments au centre */
+}
+
+/* Style du bouton de sélection */
+.choose-button {
+    background-color: #34495e; /* Couleur sombre */
+    color: white; /* Couleur du texte blanc */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    padding: 6px 10px; /* Réduire l'espacement interne */
+    cursor: pointer; /* Curseur pointer */
+    font-size: 0.8em; /* Taille de police légèrement plus petite pour le bouton */
+}
+
+/* Style pour le bouton de sélection au survol */
+.choose-button:hover {
+    background-color: #2c3e50; /* Couleur légèrement plus sombre au survol */
+}
+
+/* Style pour le texte de confirmation */
+.confirmation {
+    margin-left: 5px; /* Réduire l'espacement à gauche */
+    color: green; /* Couleur verte pour la confirmation */
+}
+
+/* Style pour l'adresse choisie */
+#selected-address {
+    margin-top: 5px; /* Réduire l'espacement au-dessus */
+    font-weight: bold; /* Texte en gras */
+    color: #34495e; /* Couleur sombre */
+    font-size: 0.85em; /* Taille de police légèrement plus petite pour l'adresse choisie */
+}

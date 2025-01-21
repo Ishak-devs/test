@@ -1,0 +1,38 @@
+body {
+    margin: 0; /* Supprimer les marges par défaut */
+    overflow: hidden;
+}
+
+.container {
+    min-height: calc(100vh - 120px); /* Ajuster la hauteur pour ne pas prendre en compte le header et le footer */
+    display: flex; /* Utiliser flexbox pour centrer le contenu */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+}
+
+.form-container {
+    max-width: 400px; /* Largeur maximale du conteneur de formulaire */
+    width: 100%; /* Pour un conteneur responsive */
+    margin: auto; /* Centrer le conteneur */
+    padding: 20px; /* Ajouter un peu de remplissage à l'intérieur du conteneur */
+    border-radius: 8px; /* Arrondir les coins */
+}
+
+.title {
+    font-size: 24px; /* Taille du titre */
+    margin-bottom: 10px; /* Espacement en bas du titre */
+}
+
+.description {
+    margin-bottom: 20px; /* Espacement sous la description */
+}
+
+.create-account {
+    margin-top: 10px; /* Espacement au-dessus du bouton de création de compte */
+}
+
+.error {
+    color: red; /* Couleur rouge pour le texte des messages d'erreur */
+    font-size: 14px; /* Taille de police pour les messages d'erreur */
+    margin-top: 5px; /* Espacement au-dessus du message d'erreur */
+}

@@ -1,0 +1,29 @@
+.avis-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.avis-table th, .avis-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.avis-note .star {
+    font-size: 20px;
+    color: gold;
+}
+
+.retour-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.retour-button:hover {
+    background-color: #0056b3;
+}

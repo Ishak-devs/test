@@ -1,0 +1,94 @@
+/* Style général */
+h1.commande-title {
+    text-align: center;
+    margin: 20px 0;
+    color: #212f3c;
+    /* Couleur du titre */
+}
+
+table.commandes-table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    /* Fond blanc pour la table */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Ombre autour de la table */
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    /* Lignes de séparation */
+}
+
+th {
+    background-color: #34495e;
+    /* Couleur d'arrière-plan des en-têtes */
+    color: #ffffff;
+    /* Couleur du texte des en-têtes */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Couleur de fond pour les lignes paires */
+}
+
+tr:hover {
+    background-color: #e0e0e0;
+    /* Couleur de fond au survol */
+}
+
+p {
+    text-align: center;
+    color: #212f3c;
+    /* Couleur du texte des messages */
+}
+
+a.retour-button {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #febd69;
+    /* Couleur d'arrière-plan du lien */
+    color: #212f3c;
+    /* Couleur du texte du lien */
+    text-decoration: none;
+    border-radius: 5px;
+    /* Coins arrondis */
+}
+
+a.retour-button:hover {
+    background-color: #f3a84a;
+    /* Couleur au survol du lien */
+}
+
+/* Partie spécifique pour les étoiles de notation */
+.stars {
+    display: inline-block;
+}
+
+.stars input[type="radio"] {
+    display: none;
+}
+
+.stars label {
+    font-size: 30px;
+    color: #ddd; /* couleur grise par défaut */
+    cursor: pointer;
+}
+
+/* Applique la couleur dorée à l'étoile survolée et toutes celles à gauche */
+.stars label:hover,
+.stars label:hover~label {
+    color: gold;
+}
+
+/* Applique la couleur dorée à toutes les étoiles à gauche de l'étoile sélectionnée */
+.stars input[type="radio"]:checked~label,
+.stars input[type="radio"]:checked~label~label {
+    color: gold;
+}
