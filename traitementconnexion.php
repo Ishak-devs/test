@@ -1,94 +1,76 @@
 <?php
-session_start(); // Démarrer la session
-require_once('db.php');
 
-// Traitement de la connexion
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['connexion'])) {
-    $email = $_POST['email_connexion'];
-    $mot_de_passe = $_POST['mot_de_passe_connexion'];
+require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/phpmailer/src/SMTP.php';
+require 'vendor/phpmailer/phpmailer/src/Exception.php';
 
-    // Vérification des identifiants
-    $stmt = $pdo->prepare('SELECT * FROM clients WHERE email = :email');
-    $stmt->execute(['email' => $email]);
-    $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
-    if ($utilisateur && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
-        // Vérification si l'email est vérifié
-        if ($utilisateur['email_verified'] == 1) {
-            // Démarrer la session et stocker des informations
-            $_SESSION['utilisateur_id'] = $utilisateur['utilisateur_id'];
-            $_SESSION['prenom'] = $utilisateur['prenom'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            // Transférer le panier de la session à la table 'paniers' et 'details_panier'
-            if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
-                $utilisateur_id = $utilisateur['utilisateur_id'];
-                $panier = $_SESSION['panier'];
+    $email = htmlspecialchars($_POST['email']);
 
-                // Vérifier si un panier existe pour l'utilisateur
-                $stmt = $pdo->prepare('SELECT panier_id FROM paniers WHERE utilisateur_id = :utilisateur_id');
-                $stmt->execute(['utilisateur_id' => $utilisateur_id]);
-                $panierExist = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                // Si aucun panier n'existe, en créer un
-                if (!$panierExist) {
-                    try {
-                        $stmt = $pdo->prepare('INSERT INTO paniers (utilisateur_id) VALUES (:utilisateur_id)');
-                        $stmt->execute(['utilisateur_id' => $utilisateur_id]);
-                        $panier_id = $pdo->lastInsertId(); // Récupérer l'ID du nouveau panier
-                    } catch (PDOException $e) {
-                        echo "Erreur lors de l'insertion dans paniers: " . $e->getMessage();
-                    }
-                } else {
-                    $panier_id = $panierExist['panier_id'];
-                }
-
-                // Ajout des produits dans details_panier
-                foreach ($panier as $item) {
-                    $produit_id = $item['produit_id'];
-                    $quantite = $item['quantite'];
-                    $nom_produit = $item['nom_produit'];
-                    $prix = $item['prix'];
-
-                    // Vérifier si le produit existe déjà dans details_panier pour cet utilisateur
-                    $sql = "SELECT quantite FROM details_panier WHERE panier_id = :panier_id AND produit_id = :produit_id";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->execute(['panier_id' => $panier_id, 'produit_id' => $produit_id]);
-                    $existingProduct = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                    if ($existingProduct) {
-                        // Si le produit existe déjà, mettre à jour la quantité
-                        $sql = "UPDATE details_panier SET quantite = quantite + :quantite WHERE panier_id = :panier_id AND produit_id = :produit_id";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute(['quantite' => $quantite, 'panier_id' => $panier_id, 'produit_id' => $produit_id]);
-                    } else {
-                        // Sinon, insérer le produit
-                        $sql = "INSERT INTO details_panier (panier_id, produit_id, quantite, utilisateur_id, prix) 
-                                VALUES (:panier_id, :produit_id, :quantite, :utilisateur_id, :prix)";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->execute([
-                            'panier_id' => $panier_id,
-                            'produit_id' => $produit_id,
-                            'quantite' => $quantite,
-                            'utilisateur_id' => $utilisateur_id,
-                            'prix' => $prix
-                        ]);
-                    }
-                }
-            }
-
-            // Redirection vers pageperso.php après connexion réussie
-            header("Location: pageperso.php");
-            exit;
-        } else {
-            // E-mail non vérifié
-            $_SESSION['message'] = "Veuillez vérifier votre adresse e-mail avant de vous connecter.";
-            header("Location: connexion.php");
-            exit;
-        }
-    } else {
-        // Identifiants incorrects
-        $_SESSION['message'] = "Email ou mot de passe incorrect.";
-        header("Location: connexion.php");
+    // Validation de l'email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<p style='color: red;'>Veuillez entrer un email valide.</p>";
         exit;
     }
+
+    // Configuration et envoi de l'e-mail de confirmation
+    $mail = new PHPMailer(true);
+    try {
+        $mail->isSMTP(); // Utilisation du protocole SMTP
+        $mail->Host = 'smtp.mail.yahoo.com'; // Serveur SMTP de Yahoo
+        $mail->SMTPAuth = true; // Activer l'authentification SMTP
+        $mail->Username = 'kouicicontact@yahoo.com'; // Adresse e-mail Yahoo
+        $mail->Password = 'ndvmyqlrsnmeecxw'; // Clé de sécurité Yahoo
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Sécurisation avec STARTTLS
+        $mail->Port = 587; // Port SMTP pour STARTTLS
+
+        // Configuration de l'expéditeur et du destinataire
+        $mail->setFrom('kouicicontact@yahoo.com', 'ecom INSTA');
+        $mail->addAddress($email); // L'email de l'utilisateur
+
+        // Configuration du contenu de l'e-mail
+        $mail->isHTML(true); // Format HTML
+        $mail->CharSet = 'UTF-8'; // Encodage UTF-8
+        $mail->Subject = 'Inscription réussie';
+        $mail->Body = "Merci de vous être inscrit sur ecom INSTA. Votre email a été enregistré avec succès.";
+
+        // Tentative d'envoi de l'e-mail
+        if ($mail->send()) {
+            echo "<p style='color: green;'>E-mail de confirmation envoyé avec succès à $email.</p>";
+        } else {
+            echo "<p style='color: red;'>Erreur lors de l'envoi de l'e-mail: {$mail->ErrorInfo}</p>";
+        }
+    } catch (Exception $e) {
+        // Gestion des erreurs liées à l'e-mail
+        echo "<p style='color: red;'>Erreur lors de la configuration ou de l'envoi de l'e-mail : {$e->getMessage()}</p>";
+    }
 }
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoyer un e-mail</title>
+</head>
+
+<body>
+
+    <form method="post" action="">
+        <h2>Recevoir un email de confirmation</h2>
+        <label for="email">Entrez votre email :</label>
+        <input type="email" id="email" name="email" required placeholder="Votre email">
+        <br><br>
+        <input type="submit" value="reset password">
+    </form>
+
+</body>
+
+</html>

@@ -1,51 +1,84 @@
-
-
 <?php
-
-
-session_start();
-
-
-
-$dsn = 'mysql:host=localhost;dbname=ecommerce;charset=utf8mb4';
-$user = 'root';
-$pass = '';
-
-try {
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-    exit();
+// Vérifie si une session n'est pas déjà démarrée avant de la démarrer
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
-$utilisateur_id = $utilisateur['utilisateur_id'];
+?>
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $produit_id = trim($_POST['produit_id']) ?: null;
-}
-$panier_id = $pdo->lastInsertId();
+<!DOCTYPE html>
+<html lang="fr">
 
-if ($utilisateur_id) {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar avec PHP et CSS intégré</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
 
-    $sql = "INSERT INTO paniers (utilisateur_id) VALUES (:utilisateur_id)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['utilisateur_id' => $utilisateur_id]);
+<body>
 
-    $sql = "
-                INSERT INTO details_panier (panier_id, produit_id, nom_produit, prix, quantite, utilisateur_id)
-                VALUES (:panier_id, :produit_id, :nom_produit, :prix, :quantite, :utilisateur_id)
-                ON DUPLICATE KEY UPDATE quantite = quantite + :quantite";
+    <!-- Barre de navigation -->
+    <div class="navbar">
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        'panier_id' => $panier_id,
-        'produit_id' => $produit_id,
-        'nom_produit' => $nom_produit,
-        'prix' => $prix,
-        'quantite' => $quantite,
-        'utilisateur_id' => $utilisateur_id
-    ]);
+        <!-- Liens de navigation à droite -->
+        <div class="navbar-right">
+            <?php if (!isset($_SESSION['firstname'])): ?>
+                <!-- Si l'utilisateur n'est pas connecté, afficher Connexion -->
+                <a href="connexion.php">Se connecter</a>
+            <?php else: ?>
+                <!-- Si l'utilisateur est connecté, afficher Déconnexion -->
+                <span>Bienvenue, <?php echo htmlspecialchars($_SESSION['firstname']); ?></span>
+                <form action="logout.php" method="POST" style="display:inline;">
+                    <button type="submit">Se déconnecter</button>
+                </form>
+            <?php endif; ?>
 
+            <form class="search-form" role="search">
+                <datalist id="data-list"></datalist>
+                <input class="nav-search" id="query" type="search" name="query" placeholder="Search" aria-label="Search">
+                <button class="btn-search" type="submit">Search</button>
+            </form>
 
-    exit();
-}
+            <a href="cart.php">Panier</a>
+
+            <a href="store.php">Store Page</a>
+        </div>
+    </div>
+
+    <script>
+        // Lors de la saisie dans le champ de recherche
+        $('input[name="query"]').on('input', function() {
+            var searchInput = $(this).val(); // Récupère la valeur saisie
+            var datalist = $('#data-list'); // Cible le datalist
+
+            // Si le champ de recherche n'est pas vide
+            if (searchInput.length > 0) {
+                // Effectue la requête AJAX
+                $.ajax({
+                    url: 'test1.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        search: searchInput
+                    },
+                    success: function(response) {
+                        // Vide le datalist avant d'ajouter de nouvelles options
+                        datalist.empty();
+
+                        // Ajoute les options au datalist
+                        $.each(response, function(index, product) {
+                            datalist.append(
+                                $('<option>', {
+                                    value: product.nom_produit // Remplace "typeAnimals" par le champ approprié
+                                })
+                            );
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,35 +1,30 @@
 <?php
-// Démarrer la session (si nécessaire)
-session_start();
+// Connexion à la base de données
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ecom2425";
 
-// Inclure le fichier de connexion à la base de données
-require_once('db.php');
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-try {
-    // Préparer et exécuter la requête pour récupérer les données de la table categories
-    $stmt = $pdo->prepare("SELECT * FROM categories");
-    $stmt->execute();
-    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Nom du fichier où les données seront écrites
-    $filename = 'categories.csv';
-
-    // Ouvrir un fichier en mode écriture
-    $file = fopen($filename, 'w');
-
-    // Écrire l'en-tête du fichier CSV
-    fputcsv($file, ['categorie_id', 'nom_categorie']);
-
-    // Écrire les données dans le fichier
-    foreach ($categories as $categorie) {
-        fputcsv($file, $categorie);
-    }
-
-    // Fermer le fichier
-    fclose($file);
-
-    // Message de confirmation
-    echo "Les données ont été exportées avec succès dans '$filename'.";
-} catch (PDOException $e) {
-    echo "Erreur lors de la récupération des données : " . $e->getMessage();
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("Connexion échouée : " . $conn->connect_error);
 }
+
+// Requête SQL pour récupérer les produits
+$sql = "SELECT *FROM produits";
+$result = $conn->query($sql);
+
+$products = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $products[] = $row;
+    }
+}
+
+$conn->close();
+
+// Retourner les produits en JSON
+header('Content-Type: application/json');
+echo json_encode($products);

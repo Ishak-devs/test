@@ -41,20 +41,6 @@ h1 {
     justify-content: flex-end;
 }
 
-#product {
-    width: 350px;
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    border-radius: 4px;
-    margin-right: 10px;
-    transition: border 0.3s ease;
-}
-
-#product:focus {
-    border-color: #febd69; /* Bordure jaune clair au focus */
-    outline: none;
-}
-
 /* Section droite du menu */
 .right-section {
     display: flex;

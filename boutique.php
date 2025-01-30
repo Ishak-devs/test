@@ -1,6 +1,21 @@
 <?php
+
+$dsn = 'mysql:host=localhost;dbname=ecom2425;charset=utf8mb4';
+$user = 'root';
+$pass = '';
+
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 session_start();
-include('db.php');
 include('header.php');
 
 // Affichage du message d'erreur, s'il existe
