@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 
 $panier = isset($_SESSION['panier']) ? $_SESSION['panier'] : [];
